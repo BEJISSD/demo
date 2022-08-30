@@ -13,6 +13,8 @@ import { parseTime, resetForm, addDateRange, selectDictLabel, selectDictLabels, 
 import './assets/icons' // icon
 import './permission' // permission control
 import store from './store'
+// 自定义表格工具组件
+import RightToolbar from "@/components/RightToolbar"
 // var less = require('less');
 
 // 全局方法挂载
@@ -27,7 +29,7 @@ Vue.prototype.handleTree = handleTree
 // Vue.component('DictTag', DictTag)
 Vue.component('Pagination', Pagination)
 Vue.component('DictTag', DictTag)
-// Vue.component('RightToolbar', RightToolbar)
+Vue.component('RightToolbar', RightToolbar)
 // Vue.component('Editor', Editor)
 // Vue.component('FileUpload', FileUpload)
 // Vue.component('ImageUpload', ImageUpload)

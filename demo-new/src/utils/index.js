@@ -5,12 +5,12 @@ import { parseTime } from './ruoyi'
  */
 export function formatDate(cellValue) {
   if (cellValue == null || cellValue == "") return "";
-  var date = new Date(cellValue) 
+  var date = new Date(cellValue)
   var year = date.getFullYear()
   var month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1
-  var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate() 
-  var hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours() 
-  var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes() 
+  var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+  var hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+  var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
   var seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
   return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
 }
@@ -330,7 +330,7 @@ export function makeMap(str, expectsLowerCase) {
     ? val => map[val.toLowerCase()]
     : val => map[val]
 }
- 
+
 export const exportDefault = 'export default '
 
 export const beautifierConf = {
@@ -381,10 +381,31 @@ export function titleCase(str) {
 
 // 下划转驼峰
 export function camelCase(str) {
-  return str.replace(/-[a-z]/g, str1 => str1.substr(-1).toUpperCase())
+  return str.replace(/_[a-z]/g, str1 => str1.substr(-1).toUpperCase())
+}
+// 驼峰转换下划线
+export function toLine(name) {
+  return name.replace(/([A-Z])/g,"_$1").toLowerCase();
+}
+// 将对象中的下划转驼峰
+export function camelCaseByObject(Object){
+  let data = {}
+  for (const key in Object) {
+    data[camelCase(key)] = Object[key];
+  }
+  return data;
+}
+
+// 将对象中的下划转驼峰
+export function toLineByObject(Object){
+  let data = {}
+  for (const key in Object) {
+    data[toLine(key)] = Object[key];
+  }
+  return data;
 }
 
 export function isNumberStr(str) {
   return /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g.test(str)
 }
- 
+

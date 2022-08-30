@@ -1,9 +1,17 @@
 import { constantRoutes } from '@/router'
 import { getRouters } from '@/api/menu'
 import Layout from '@/Layout/index'
+import { push } from 'echarts/lib/component/dataZoom/history'
 // import ParentView from '@/components/ParentView';
 // import InnerLink from '@/layout/components/InnerLink'
-
+const indexRouter = {
+  name:"首页",
+  code:'/index',
+  url:'index',
+  icon:'',
+  id:"0_index",
+  children_list:[],
+}
 const permission = {
   state: {
     routes: [],
@@ -26,7 +34,8 @@ const permission = {
         // 向后端请求路由数据
         getRouters().then(res => {
           const rdata = JSON.parse(JSON.stringify(res.data));
-          const sdata = JSON.parse(JSON.stringify(res.data));
+          let sdata = JSON.parse(JSON.stringify(res.data));
+          sdata.unshift(indexRouter);
           const sidebarRoutes = sdata;
           let rewriteRoutes= filterAsyncRouter(rdata);
           rewriteRoutes.push({ path: '*', redirect: '/404', hidden: true });
